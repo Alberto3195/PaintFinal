@@ -34,7 +34,7 @@ public class Forma extends Polygon {
 
     }
 
-    public void dibujate(Graphics2D g2, int _posX, int _posY) {
+    public void dibujate(Graphics2D g2, int _posX, int _posY, int thickness) {
         calculaVertices(y - _posY, x - _posX);
         g2.setColor(color);
         if (relleno) {
@@ -48,9 +48,12 @@ public class Forma extends Polygon {
     public void calculaVertices(int _radio, double _giro) {
 
         for (int i = 0; i < npoints; i++) {
-            xpoints[i] = (int) (x + _radio * Math.cos(2 * Math.PI * i + _giro / 40) / npoints);
-            ypoints[i] = (int) (y + _radio * Math.sin(2 * Math.PI * i + _giro / 40) / npoints);
+            xpoints[i] = (int) (x + _radio * Math.cos((2 * Math.PI * i + _giro / 40) / npoints));
+            ypoints[i] = (int) (y + _radio * Math.sin((2 * Math.PI * i + _giro / 40) / npoints));
         }
     }
 
+    
+
+    
 }
