@@ -17,6 +17,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -90,6 +95,11 @@ public class VentanaPaint extends javax.swing.JFrame {
         panelColores1 = new codigo.PanelColores();
         herramientas1 = new codigo.Herramientas();
         jButton3 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +136,12 @@ public class VentanaPaint extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
+
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
@@ -175,6 +191,31 @@ public class VentanaPaint extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Guardar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Abrir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,7 +262,8 @@ public class VentanaPaint extends javax.swing.JFrame {
         switch (herramientas1.formaElegida) {
 
             case 17://LAPIZ GOMA
-               // bufferGraphics2.setColor(panelColores1.colorSeleccionado); //Estoy dibujando sobre la memoria, y después tengo que volcarlo sobre la pantalla
+               
+// bufferGraphics2.setColor(panelColores1.colorSeleccionado); //Estoy dibujando sobre la memoria, y después tengo que volcarlo sobre la pantalla
                // bufferGraphics2.fillOval(evt.getX(), evt.getY(), 6, 6);
                 
                 miTrazo.dibujate(bufferGraphics2, evt.getX(), evt.getY(),herramientas1.thickness);
@@ -274,7 +316,7 @@ public class VentanaPaint extends javax.swing.JFrame {
           
 
             case 1:
-                miForma = new Circulo(evt.getX(), evt.getY(), 5000, panelColores1.colorSeleccionado, herramientas1.relleno);
+                miForma = new Circulo(evt.getX(), evt.getY(), 100, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(),evt.getY(),herramientas1.thickness);
                 break;
                 
@@ -307,13 +349,14 @@ public class VentanaPaint extends javax.swing.JFrame {
        
             
                   
-            if ((herramientas1.formaElegida > 0 && herramientas1.formaElegida <= 5) || herramientas1.formaElegida == 256) {//Para que no dé error cuando no pintemos formas
-            miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY(), herramientas1.thickness);
+            if ((herramientas1.formaElegida > 0 && herramientas1.formaElegida <= 5) ||
+                 herramientas1.formaElegida == 256) {//Para que no dé error cuando no pintemos formas
+            miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY(),herramientas1.thickness);
         
         
         } 
             else if (herramientas1.formaElegida == 0) {
-            dibujaLineas.dibujate(bufferGraphics2, evt.getX(), evt.getY(), herramientas1.thickness);
+            dibujaLineas.dibujate(bufferGraphics2, evt.getX(), evt.getY(),herramientas1.thickness);
         }  
            
         
@@ -329,6 +372,58 @@ public class VentanaPaint extends javax.swing.JFrame {
         jDialog1.setSize(660, 660);
         jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        int seleccion = jFileChooser1.showSaveDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION){
+            //si entra aquí es porque el usuario ha pulsado en "guardar"
+            File fichero = jFileChooser1.getSelectedFile();
+            String nombre = fichero.getName();
+            String extension = nombre.substring(nombre.lastIndexOf('.')+1, nombre.length());
+            if(extension.equalsIgnoreCase("jpg") || extension.equalsIgnoreCase("png")){
+                try{
+                    ImageIO.write(buffer, "png", fichero);
+                } 
+                catch (IOException e){
+                }
+            }
+            else {
+                //mensaje de extensión no válida
+            }
+        }
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+        jFileChooser1.setFileFilter(new FileNameExtensionFilter("arhivos de imagen jpg", "jpg"));
+        jFileChooser1.setFileFilter(new FileNameExtensionFilter("arhivos de imagen png", "png"));
+        int seleccion = jFileChooser1.showOpenDialog(this);
+        
+        if (seleccion == JFileChooser.APPROVE_OPTION){
+            File fichero = jFileChooser1.getSelectedFile();
+            String nombre = fichero.getName();
+            String extension = nombre.substring(nombre.lastIndexOf('.')+1, nombre.length());
+
+            if (extension.equalsIgnoreCase("jpg") || extension.equalsIgnoreCase("png")) {
+                try {
+                    
+                    bufferGraphics.drawImage(ImageIO.read(fichero), 0, 0, null);
+                    bufferGraphics2.drawImage(ImageIO.read(fichero), 0, 0, null);
+                    repaint(0,0,1,1);
+                } catch (IOException ex) {
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,6 +451,8 @@ public class VentanaPaint extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaPaint.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -374,6 +471,11 @@ public class VentanaPaint extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private codigo.PanelColores panelColores1;
     // End of variables declaration//GEN-END:variables

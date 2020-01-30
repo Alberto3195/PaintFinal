@@ -235,24 +235,24 @@ public class Herramientas extends javax.swing.JPanel {
         jSpinner1.setValue(jSlider1.getValue());
     }//GEN-LAST:event_jSlider1MouseDragged
 
-    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        // TODO add your handling code here:
-        thickness =  (int) jSpinner1.getValue();
-         System.out.println(thickness);
-        
-    }//GEN-LAST:event_jSpinner1StateChanged
-
     private void jSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseReleased
         // TODO add your handling code here:
         
          thickness = jSlider1.getValue();
-            System.out.println(thickness);
+           
     }//GEN-LAST:event_jSlider1MouseReleased
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
          formaElegida = 0;
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        // TODO add your handling code here:
+        thickness =  (int) jSpinner1.getValue();
+        System.out.println(thickness);
+
+    }//GEN-LAST:event_jSpinner1StateChanged
                                       
 
   

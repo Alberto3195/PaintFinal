@@ -16,6 +16,6 @@ import java.awt.geom.Ellipse2D;
 public class Circulo extends Forma {
 
     public Circulo(int _posX, int _posY, int _lados, Color _color, boolean _relleno) {
-        super(_posX, _posY, 5000, _color, _relleno);
+        super(_posX, _posY, 100, _color, _relleno);
         }
 }
