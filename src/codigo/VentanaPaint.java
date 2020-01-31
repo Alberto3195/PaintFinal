@@ -6,6 +6,7 @@
 package codigo;
 
 import codigo.formas.Circulo;
+import codigo.formas.Clean;
 import codigo.formas.Cuadrado;
 import codigo.formas.Estrella;
 import codigo.formas.Forma;
@@ -39,6 +40,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     Forma miForma = null; //new Forma(0, 0, 1, Color.white, false);//para que la forma no de error.
     Trazo miTrazo = null;
     Lineas dibujaLineas = null;
+    Clean cleaner= null;
     int trazoX;
     int trazoY;
     
@@ -100,6 +102,7 @@ public class VentanaPaint extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +184,7 @@ public class VentanaPaint extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 387, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
         jButton3.setText("colores");
@@ -212,6 +215,15 @@ public class VentanaPaint extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jMenuItem3.setText("Limpiar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -239,8 +251,8 @@ public class VentanaPaint extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(herramientas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(herramientas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -350,8 +362,8 @@ public class VentanaPaint extends javax.swing.JFrame {
             
                   
             if ((herramientas1.formaElegida > 0 && herramientas1.formaElegida <= 5) ||
-                 herramientas1.formaElegida == 256) {//Para que no dé error cuando no pintemos formas
-            miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY(),herramientas1.thickness);
+                 herramientas1.formaElegida == 256) {
+            miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY(),herramientas1.thickness);//Para que no dé error cuando no pintemos formas
         
         
         } 
@@ -425,6 +437,34 @@ public class VentanaPaint extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+         cleaner = new Clean();
+        cleaner.dibujate(bufferGraphics2, jPanel1);
+        bufferGraphics.drawImage(buffer2, 0, 0, null);
+        repaint(0, 0, 1, 1);
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    /*
+    
+    
+    Cleaner clean = null;
+     
+    
+    
+    
+    Limpiar miLimpiar = null;
+    
+    miLimpiar = new Limpiar();
+        
+    miLimpiar.dibujate(bufferGraphics2, jPanel1);
+        bufferGraphics.drawImage(buffer2, 0, 0, null);
+        repaint(0, 0, 1, 1);
+    
+    
+    */
+    
     /**
      * @param args the command line arguments
      */
@@ -476,6 +516,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private codigo.PanelColores panelColores1;
     // End of variables declaration//GEN-END:variables
