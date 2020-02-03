@@ -12,6 +12,7 @@ import codigo.formas.Estrella;
 import codigo.formas.Forma;
 import codigo.formas.Lineas;
 import codigo.formas.Pentagono;
+import codigo.formas.TampondeColor;
 import codigo.formas.Trazo;
 import codigo.formas.Triangulo;
 import java.awt.Color;
@@ -41,6 +42,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     Trazo miTrazo = null;
     Lineas dibujaLineas = null;
     Clean cleaner= null;
+    TampondeColor tampondeColor = null;
     int trazoX;
     int trazoY;
     
@@ -276,7 +278,7 @@ public class VentanaPaint extends javax.swing.JFrame {
             case 17://LAPIZ GOMA
                
 // bufferGraphics2.setColor(panelColores1.colorSeleccionado); //Estoy dibujando sobre la memoria, y después tengo que volcarlo sobre la pantalla
-               // bufferGraphics2.fillOval(evt.getX(), evt.getY(), 6, 6);
+ // bufferGraphics2.fillOval(evt.getX(), evt.getY(), 6, 6);
                 
                 miTrazo.dibujate(bufferGraphics2, evt.getX(), evt.getY(),herramientas1.thickness);
 
@@ -348,6 +350,13 @@ public class VentanaPaint extends javax.swing.JFrame {
             case 5:
                 miForma = new Pentagono(evt.getX(), evt.getY(), 5, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(),herramientas1.thickness);
+                break;
+                
+             case 14:
+                tampondeColor = new TampondeColor(evt.getX(), evt.getY(), buffer2);
+                panelColores1.colorSeleccionado = tampondeColor.absorbeColor(evt.getX(), evt.getY(), buffer2,  panelColores1.colorSeleccionado);
+                panelColores1.jLabel21.setBackground( panelColores1.colorSeleccionado);
+              
                 break;
             case 256:
                 miForma = new Estrella(evt.getX(), evt.getY(), 256, panelColores1.colorSeleccionado, herramientas1.relleno);
@@ -439,7 +448,7 @@ public class VentanaPaint extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-         cleaner = new Clean();
+        cleaner = new Clean();
         cleaner.dibujate(bufferGraphics2, jPanel1);
         bufferGraphics.drawImage(buffer2, 0, 0, null);
         repaint(0, 0, 1, 1);

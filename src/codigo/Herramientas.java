@@ -108,11 +108,6 @@ public class Herramientas extends javax.swing.JPanel {
             }
         });
 
-        jSlider1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jSlider1MouseDragged(evt);
-            }
-        });
         jSlider1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jSlider1MouseReleased(evt);
@@ -126,7 +121,7 @@ public class Herramientas extends javax.swing.JPanel {
             }
         });
 
-        jButton9.setText("Limpiar");
+        jButton9.setText("Tampon de color");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -245,18 +240,6 @@ public class Herramientas extends javax.swing.JPanel {
         eraser = true;
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jSlider1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseDragged
-        // TODO add your handling code here:
-        jSpinner1.setValue(jSlider1.getValue());
-    }//GEN-LAST:event_jSlider1MouseDragged
-
-    private void jSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseReleased
-        // TODO add your handling code here:
-        
-         thickness = jSlider1.getValue();
-           
-    }//GEN-LAST:event_jSlider1MouseReleased
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
          formaElegida = 0;
@@ -271,8 +254,15 @@ public class Herramientas extends javax.swing.JPanel {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        formaElegida= 14;
         
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseReleased
+        // TODO add your handling code here:
+        thickness = jSlider1.getValue();
+        System.out.println(thickness);
+    }//GEN-LAST:event_jSlider1MouseReleased
                                       
 
   
