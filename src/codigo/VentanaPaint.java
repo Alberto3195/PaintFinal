@@ -45,6 +45,9 @@ public class VentanaPaint extends javax.swing.JFrame {
     TampondeColor tampondeColor = null;
     int trazoX;
     int trazoY;
+    Herramientas formaElegida = null;
+
+    
     
     
     public VentanaPaint() { //constructor
@@ -356,6 +359,8 @@ public class VentanaPaint extends javax.swing.JFrame {
                 tampondeColor = new TampondeColor(evt.getX(), evt.getY(), buffer2);
                 panelColores1.colorSeleccionado = tampondeColor.absorbeColor(evt.getX(), evt.getY(), buffer2,  panelColores1.colorSeleccionado);
                 panelColores1.jLabel21.setBackground( panelColores1.colorSeleccionado);
+                herramientas1.formaElegida = herramientas1.guardaForma;
+
               
                 break;
             case 256:
