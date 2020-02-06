@@ -46,6 +46,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     int trazoX;
     int trazoY;
     Herramientas formaElegida = null;
+    
 
     
     
@@ -354,6 +355,15 @@ public class VentanaPaint extends javax.swing.JFrame {
                 miForma = new Pentagono(evt.getX(), evt.getY(), 5, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(),herramientas1.thickness);
                 break;
+                
+                /*
+                case 12:
+
+                miSpray = new Spray(evt.getX(), evt.getY(), panelColores.colorSeleccionado);
+                miSpray.dibujate(bufferGraphics, evt.getX(), evt.getY(), ventanaHerramientas1.grosorLinea);
+                break;
+                
+                */
                 
              case 14:
                 tampondeColor = new TampondeColor(evt.getX(), evt.getY(), buffer2);
