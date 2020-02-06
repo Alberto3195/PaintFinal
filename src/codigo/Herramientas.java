@@ -333,7 +333,7 @@ public class Herramientas extends javax.swing.JPanel {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        formaElegida= 13;
+        formaElegida= 12;
         guardaForma = formaElegida;
     }//GEN-LAST:event_jButton10ActionPerformed
 

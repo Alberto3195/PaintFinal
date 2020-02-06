@@ -22,6 +22,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -36,6 +37,8 @@ public class VentanaPaint extends javax.swing.JFrame {
 
     Graphics2D bufferGraphics, bufferGraphics2, jPanelGraphics = null; //libreria de java que permite figuras geometricas y lineas
     
+    ArrayList<BufferedImage> bufferLista = new ArrayList<BufferedImage>();
+    ArrayList<BufferedImage> buffer2Lista = new ArrayList<BufferedImage>();
    
 
     
@@ -49,6 +52,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     Herramientas formaElegida = null;
     Spray miSpray = null;
     
+    int indiceLista = 0;
 
     
     
@@ -313,7 +317,7 @@ public class VentanaPaint extends javax.swing.JFrame {
             case 12:
 
                 miSpray = new Spray(evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
-                miSpray.dibujate(bufferGraphics, evt.getX(), evt.getY(), herramientas1.thickness);
+                miSpray.dibujate(bufferGraphics2, evt.getX(), evt.getY(), herramientas1.thickness);
                 break;
                     
 
@@ -375,6 +379,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     
                 
              case 14:
+                
                 tampondeColor = new TampondeColor(evt.getX(), evt.getY(), buffer2);
                 panelColores1.colorSeleccionado = tampondeColor.absorbeColor(evt.getX(), evt.getY(), buffer2,  panelColores1.colorSeleccionado);
                 panelColores1.jLabel21.setBackground( panelColores1.colorSeleccionado);
@@ -383,7 +388,8 @@ public class VentanaPaint extends javax.swing.JFrame {
 
               
                 break;
-            case 256:
+            
+             case 256:
                 miForma = new Estrella(evt.getX(), evt.getY(), 256, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(),herramientas1.thickness);
                 break;
@@ -404,6 +410,14 @@ public class VentanaPaint extends javax.swing.JFrame {
             else if (herramientas1.formaElegida == 0) {
             dibujaLineas.dibujate(bufferGraphics2, evt.getX(), evt.getY(),herramientas1.thickness);
         }  
+            if (herramientas1.formaElegida != 14) {
+            indiceLista++;
+            bufferLista.add(buffer);
+            //buffer2Lista.add(buffer2);
+
+        }
+
+            
            
         
     }//GEN-LAST:event_jPanel1MouseReleased
