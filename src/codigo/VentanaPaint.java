@@ -12,6 +12,7 @@ import codigo.formas.Estrella;
 import codigo.formas.Forma;
 import codigo.formas.Lineas;
 import codigo.formas.Pentagono;
+import codigo.formas.Spray;
 import codigo.formas.TampondeColor;
 import codigo.formas.Trazo;
 import codigo.formas.Triangulo;
@@ -46,6 +47,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     int trazoX;
     int trazoY;
     Herramientas formaElegida = null;
+    Spray miSpray = null;
     
 
     
@@ -307,6 +309,13 @@ public class VentanaPaint extends javax.swing.JFrame {
             case 5://Pentagono
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(),herramientas1.thickness);
                 break;
+                
+            case 12:
+
+                miSpray = new Spray(evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
+                miSpray.dibujate(bufferGraphics, evt.getX(), evt.getY(), herramientas1.thickness);
+                break;
+                    
 
             case 256://Estrella
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(),herramientas1.thickness);
@@ -356,19 +365,20 @@ public class VentanaPaint extends javax.swing.JFrame {
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(),herramientas1.thickness);
                 break;
                 
-                /*
-                case 12:
-
-                miSpray = new Spray(evt.getX(), evt.getY(), panelColores.colorSeleccionado);
-                miSpray.dibujate(bufferGraphics, evt.getX(), evt.getY(), ventanaHerramientas1.grosorLinea);
-                break;
                 
-                */
+             case 12:
+
+                miSpray = new Spray(evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
+                miSpray.dibujate(bufferGraphics, evt.getX(), evt.getY(), herramientas1.thickness);
+                break;
+                    
+    
                 
              case 14:
                 tampondeColor = new TampondeColor(evt.getX(), evt.getY(), buffer2);
                 panelColores1.colorSeleccionado = tampondeColor.absorbeColor(evt.getX(), evt.getY(), buffer2,  panelColores1.colorSeleccionado);
                 panelColores1.jLabel21.setBackground( panelColores1.colorSeleccionado);
+                
                 herramientas1.formaElegida = herramientas1.guardaForma;
 
               
